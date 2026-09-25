@@ -532,7 +532,16 @@
     shell.style.display='flex';
   }
 
+  let adminUnlocked = false;
   function showTab(name, btn){
+    if(name === 'admin' && !adminUnlocked){
+      const code = prompt('Admin access code:');
+      if(code !== 'majlis2026'){
+        alert('Incorrect code.');
+        return;
+      }
+      adminUnlocked = true;
+    }
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById('screen-'+name).classList.add('active');
     document.querySelectorAll('nav.tabbar button').forEach(b=>b.classList.remove('active'));
